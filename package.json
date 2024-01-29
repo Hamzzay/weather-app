@@ -15,7 +15,6 @@
     "cb": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
-    "@lowkey/react-native-gif": "^3.1.0",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/native": "^6.1.9",
@@ -23,7 +22,6 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@rneui/base": "^0.0.0-edge.2",
     "@rneui/themed": "^0.0.0-edge.2",
-    "axios": "^1.6.2",
     "lottie-react-native": "^6.5.1",
     "react": "18.2.0",
     "react-native": "^0.73.0",

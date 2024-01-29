@@ -33,7 +33,7 @@ const createStyles = theme => {
       color: theme.color.primaryColor,
       fontSize: theme.size.small,
       fontFamily: theme.family.large,
-       },
+    },
     tempStyle: {
       color: theme.color.primaryColor,
       fontSize: theme.size.small,
@@ -64,7 +64,7 @@ const createStyles = theme => {
       height: hp(6),
       width: wp(12),
       marginRight: wp(-4),
-      marginTop:hp(-0.3)
+      marginTop: hp(-0.3),
     },
     container7Days: {
       backgroundColor: theme.color.backgroundColor,
@@ -140,16 +140,17 @@ const createStyles = theme => {
       justifyContent: 'center',
     },
     flexRow: {flexDirection: 'row'},
-      lineChart: {
-      marginLeft: wp(-4),      
-      alignSelf:'center',
-      justifyContent:'center'
-    },headingday:{
+    lineChart: {
+      marginLeft: wp(-4),
       alignSelf: 'center',
-      marginTop:hp(-0.9),
+      justifyContent: 'center',
+    },
+    headingday: {
+      alignSelf: 'center',
+      marginTop: hp(-0.9),
       padding: wp(1),
       color: theme.color.primaryColor,
-    }
+    },
   });
   return styles;
 };

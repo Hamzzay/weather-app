@@ -151,9 +151,10 @@ export default function Home(props) {
   };
   const backGif = e => {
     const backgroundImage = BackgroundGif({backgroundImage: e});
+    console.log('backgroundImage', backgroundImage)
     return backgroundImage;
   };
-
+console.log('first',backGif )
   const closeRow = (rowMap, rowKey) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
@@ -253,11 +254,11 @@ export default function Home(props) {
                       source={backGif(data?.item?.weather[0]?.icon)}>
                       <TouchableOpacity
                         onPress={() => {
-                          handleCloseRows();
-                          closeRow(rowMap, data.item.key);
-                          props.navigation.navigate('Detailweather', {
-                            city: data?.item?.name,
-                          });
+                            handleCloseRows();
+                            closeRow(rowMap, data.item.key)
+                            props.navigation.navigate('Detailweather', {
+                              city: data?.item?.name,
+                            });
                         }}
                         style={styles.containerFlat}>
                         <View style={styles.innerContainer}>
@@ -284,10 +285,10 @@ export default function Home(props) {
                 renderHiddenItem={(data, rowMap) => (
                   <TouchableOpacity
                     onPress={() => {
-                      setcloseRows(rowMap, data.item.key);
-                      closeRow(rowMap, data.item.key);
-                      dispatch(removeWeatherData(data.index));
-                    }}
+                        closeRow(rowMap, data.item.key)
+                        dispatch(removeWeatherData({ indexToRemove: data.index }));
+                    
+                      }}
                     style={styles.containerFlatDel}>
                     <LottieView
                       style={styles.lottieView}

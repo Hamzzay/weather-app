@@ -18,7 +18,7 @@ const userSlice = createSlice({
       }
     },
     removeWeatherData: (state, action) => {
-      const indexToRemove = action.payload;
+      const {indexToRemove} = action.payload;
       state.weatherData.splice(indexToRemove, 1);
     },
   },

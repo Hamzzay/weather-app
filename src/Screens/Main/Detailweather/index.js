@@ -44,6 +44,7 @@ export default function Detailweather(props) {
         console.error('Failed to fetch weather data');
       }
     } catch (error) {
+    
       Snackbar(error.message, true);
     }
   };
@@ -311,7 +312,6 @@ export default function Detailweather(props) {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                   scrollEnabled
-                  contentContainerStyle={{flexGrow: 1}} // Ensure content can grow to fill the container
                   renderItem={({item: date}) => {
                     const currentWeatherData = weatherData[date];
                     return (
