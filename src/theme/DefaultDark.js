@@ -1,14 +1,13 @@
-import {borders, colors, fontsSize,family} from '../constants/index';
+import {borders, colors, fontsSize, family} from '../constants/index';
 
 const DEFAULT_DARK_COLOR_THEME = {
   primaryColor: colors.white,
   primaryText: colors.black,
   secondaryText: colors.white,
-  buttonColor:colors.blue,
-  defaultColor:colors.gray,
-  error:colors.red,
-  backgroundColor:colors.darkBlue
-  
+  buttonColor: colors.blue,
+  defaultColor: colors.gray,
+  error: colors.red,
+  backgroundColor: colors.darkBlue,
 };
 
 const FONT_SET = {
@@ -20,10 +19,10 @@ const FONT_SET = {
     xLarge: fontsSize.extraLarge,
   },
   family: {
-regular:family.regular,
-medium:family.medium,
-bold:family.bold,
-xBold:family.xBold
+    regular: family.regular,
+    medium: family.medium,
+    bold: family.bold,
+    xBold: family.xBold,
   },
 };
 
