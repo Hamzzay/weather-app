@@ -26,7 +26,6 @@ import BackgroundGif from '../../../Components/CustomBackground';
 import {hp, wp} from '../../../util';
 import LottieView from 'lottie-react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {useIsFocused} from '@react-navigation/native';
 
 export default function Home(props) {
   const styles = useThemeAwareObject(creahandleCloseRowsyles);
@@ -36,8 +35,6 @@ export default function Home(props) {
   const [locationPermission, setLocationPermission] = useState(false);
   const {weatherData} = useSelector(state => state.user);
   const [closeRows, setcloseRows] = useState();
-  const swipeListViewRef = useRef(null); // Ref for SwipeListView component
-  const focus = useIsFocused();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -151,21 +148,20 @@ export default function Home(props) {
   };
   const backGif = e => {
     const backgroundImage = BackgroundGif({backgroundImage: e});
-    console.log('backgroundImage', backgroundImage)
+    console.log('backgroundImage', backgroundImage);
     return backgroundImage;
   };
-console.log('first',backGif )
+  console.log('first', backGif);
   const closeRow = (rowMap, rowKey) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
     }
   };
- 
   const handleCloseRows = () => {
     if (closeRows !== undefined && closeRows) {
       if (closeRows?.e[closeRows?.x]) {
         closeRows.e[closeRows.x].closeRow();
-      } 
+      }
     } else {
       console.log(
         'closeRows is undefined or some of its properties are not defined',
@@ -175,139 +171,146 @@ console.log('first',backGif )
 
   return (
     <Container>
-      <Header
-        rightComponent={
-          <View>
-            <TouchableOpacity
-              style={styles.containerAddIcon}
-              onPress={() => {
-                handleCloseRows();
-                props.navigation.navigate('AddCity');
-              }}>
-              <AddIcon name="pluscircleo" color={colors.white} size={hp(4)} />
-            </TouchableOpacity>
-          </View>
-        }
-      />
-      {locationPermission ? (
-        <TouchableOpacity onPress={() => askPermission()}>
-          <Text style={styles.permissionDeniedText}>
-            Location permission denied. Please enable location services in your
-            settings.
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <ScrollView nestedScrollEnabled={true}>
-          {currentLocationWeather == '' ? (
-            <ActivityIndicator
-              size="large"
-              color={colors.white}
-              style={styles.activityInd}
-            />
-          ) : (
+      <ImageBackground
+       blurRadius={80}
+        style={styles.mainImage}
+        resizeMode="cover"
+        source={require('../../../../assets/images/wallpaper.jpg')}>
+        <Header
+          rightComponent={
             <View>
-              <ImageBackground
-                style={styles.backGroundImage}
-                resizeMode="cover"
-                source={currentBackGif()}>
-                <TouchableOpacity
-                  onPress={() => {
-                    handleCloseRows();
-                    props.navigation.navigate('Detailweather', {
-                      city: currentLocationWeather?.name,
-                    });
-                  }}
-                  style={styles.containerFlat}>
-                  <View style={styles.innerContainer}>
-                    <View>
-                      <Text style={styles.nameStyle}>
-                        {currentLocationWeather?.name}
+              <TouchableOpacity
+                style={styles.containerAddIcon}
+                onPress={() => {
+                  handleCloseRows();
+                  props.navigation.navigate('AddCity');
+                }}>
+                <AddIcon name="pluscircle" color={colors.black} size={hp(4.2)} />
+              </TouchableOpacity>
+            </View>
+          }
+        />
+        {locationPermission ? (
+          <TouchableOpacity onPress={() => askPermission()}>
+            <Text style={styles.permissionDeniedText}>
+              Location permission denied. Please enable location services in
+              your settings.
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <ScrollView nestedScrollEnabled={true}>
+            {currentLocationWeather == '' ? (
+              <ActivityIndicator
+                size="large"
+                color={colors.white}
+                style={styles.activityInd}
+              />
+            ) : (
+              <View>
+                <ImageBackground
+                  style={styles.backGroundImage}
+                  resizeMode="cover"
+                  source={currentBackGif()}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleCloseRows();
+                      props.navigation.navigate('Detailweather', {
+                        city: currentLocationWeather?.name,
+                      });
+                    }}
+                    style={styles.containerFlat}>
+                    <View style={styles.innerContainer}>
+                      <View>
+                        <Text style={styles.nameStyle}>
+                          {currentLocationWeather?.name}
+                        </Text>
+                        <Text style={styles.locStyle}>My Location</Text>
+                      </View>
+                      <Text style={styles.desStyle}>
+                        {currentLocationWeather?.weather[0]?.main}
                       </Text>
-                      <Text style={styles.locStyle}>My Location</Text>
                     </View>
-                    <Text style={styles.desStyle}>
-                      {currentLocationWeather?.weather[0]?.main}
-                    </Text>
-                  </View>
-                  <View style={styles.innerContainer}>
-                    <Text style={styles.tempStyle}>{`${Math.round(
-                      currentLocationWeather?.main?.temp - 273.15,
-                    )}°C`}</Text>
-                    <LottieIcons
-                      style={styles.weatherIcon}
-                      weatherCondition={
-                        currentLocationWeather?.weather[0]?.icon
-                      }
-                    />
-                  </View>
-                </TouchableOpacity>
-              </ImageBackground>
-              <SwipeListView
-                data={currentWeatherData}
-                useFlatList={true}
-                disableRightSwipe
-                renderItem={(data, rowMap) => {
-                  return (
-                    <ImageBackground
-                      style={styles.backGroundImage}
-                      resizeMode="cover"
-                      source={backGif(data?.item?.weather[0]?.icon)}>
-                      <TouchableOpacity
-                        onPress={() => {
+                    <View style={styles.innerContainer}>
+                      <Text style={styles.tempStyle}>{`${Math.round(
+                        currentLocationWeather?.main?.temp - 273.15,
+                      )}°C`}</Text>
+                      <LottieIcons
+                        style={styles.weatherIcon}
+                        weatherCondition={
+                          currentLocationWeather?.weather[0]?.icon
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </ImageBackground>
+                <SwipeListView
+                  data={currentWeatherData}
+                  useFlatList={true}
+                  disableRightSwipe
+                  renderItem={(data, rowMap) => {
+                    return (
+                      <ImageBackground
+                        style={styles.backGroundImage}
+                        resizeMode="cover"
+                        source={backGif(data?.item?.weather[0]?.icon)}>
+                        <TouchableOpacity
+                          onPress={() => {
                             handleCloseRows();
-                            closeRow(rowMap, data.item.key)
+                            closeRow(rowMap, data.item.key);
                             props.navigation.navigate('Detailweather', {
                               city: data?.item?.name,
                             });
-                        }}
-                        style={styles.containerFlat}>
-                        <View style={styles.innerContainer}>
-                          <Text style={styles.nameStyle}>
-                            {data?.item?.name}
-                          </Text>
-                          <Text style={styles.desStyle}>
-                            {data.item?.weather[0]?.main}
-                          </Text>
-                        </View>
-                        <View style={styles.innerContainer}>
-                          <Text style={styles.tempStyle}>{`${Math.round(
-                            data?.item?.main?.temp - 273.15,
-                          )}°C`}</Text>
-                          <LottieIcons
-                            style={styles.weatherIcon}
-                            weatherCondition={data?.item?.weather[0]?.icon}
-                          />
-                        </View>
-                      </TouchableOpacity>
-                    </ImageBackground>
-                  );
-                }}
-                renderHiddenItem={(data, rowMap) => (
-                  <TouchableOpacity
-                    onPress={() => {
-                        closeRow(rowMap, data.item.key)
-                        dispatch(removeWeatherData({ indexToRemove: data.index }));
-                    
+                          }}
+                          style={styles.containerFlat}>
+                          <View style={styles.innerContainer}>
+                            <Text style={styles.nameStyle}>
+                              {data?.item?.name}
+                            </Text>
+                            <Text style={styles.desStyle}>
+                              {data.item?.weather[0]?.main}
+                            </Text>
+                          </View>
+                          <View style={styles.innerContainer}>
+                            <Text style={styles.tempStyle}>{`${Math.round(
+                              data?.item?.main?.temp - 273.15,
+                            )}°C`}</Text>
+                            <LottieIcons
+                              style={styles.weatherIcon}
+                              weatherCondition={data?.item?.weather[0]?.icon}
+                            />
+                          </View>
+                        </TouchableOpacity>
+                      </ImageBackground>
+                    );
+                  }}
+                  renderHiddenItem={(data, rowMap) => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        closeRow(rowMap, data.item.key);
+                        dispatch(
+                          removeWeatherData({indexToRemove: data.index}),
+                        );
                       }}
-                    style={styles.containerFlatDel}>
-                    <LottieView
-                      style={styles.lottieView}
-                      source={require('../../../../assets/lottieFiles/delete.json')}
-                      autoPlay
-                      loop
-                    />
-                  </TouchableOpacity>
-                )}
-                rightOpenValue={wp(-34)}
-                closeOnRowBeginSwipe
-                onRowOpen={(rowKey, rowMap) => {
-                  setcloseRows({e: rowMap, x: rowKey});
-                }}
-              />
-            </View>
-          )}
-        </ScrollView>
-      )}
+                      style={styles.containerFlatDel}>
+                      <LottieView
+                        style={styles.lottieView}
+                        source={require('../../../../assets/lottieFiles/delete.json')}
+                        autoPlay
+                        loop
+                      />
+                    </TouchableOpacity>
+                  )}
+                  rightOpenValue={wp(-34)}
+                  closeOnRowBeginSwipe
+                  onRowOpen={(rowKey, rowMap) => {
+                    setcloseRows({e: rowMap, x: rowKey});
+                  }}
+                />
+              </View>
+            )}
+          </ScrollView>
+        )}
+      </ImageBackground>
     </Container>
   );
 }

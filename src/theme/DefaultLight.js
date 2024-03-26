@@ -7,8 +7,8 @@ const DEFAULT_LIGHT_COLOR_THEME = {
   buttonColor: colors.blue,
   defaultColor: colors.gray,
   error:colors.red,
-  backgroundColor:colors.darkBlue
-
+  backgroundColor:colors.darkBlue,
+  appColor:colors.silver
 };
 
 const FONT_SET = {

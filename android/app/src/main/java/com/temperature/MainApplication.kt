@@ -1,4 +1,4 @@
-package com.temperature
+package com.stackup.weather
 
 import android.app.Application
 import com.facebook.react.PackageList

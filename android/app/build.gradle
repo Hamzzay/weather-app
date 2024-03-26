@@ -75,13 +75,15 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.temperature"
+    namespace "com.stackup.weather"
     defaultConfig {
-        applicationId "com.temperature"
+        applicationId "com.stackup.weather"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resConfigs "en", "es", "fr" // Add only the languages that you want to support
+
     }
     signingConfigs {
         debug {

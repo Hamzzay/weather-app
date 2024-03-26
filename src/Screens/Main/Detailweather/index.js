@@ -139,8 +139,8 @@ export default function Detailweather(props) {
   };
 
   const onRefresh = () => {
-    setWeatherData([]);
-    setCurrentWeather(undefined);
+    // setWeatherData([]);
+    // setCurrentWeather(undefined);
     handleCurrentWeather();
     handleWeekWeather();
   };
@@ -154,6 +154,8 @@ export default function Detailweather(props) {
         />
       ) : (
         <ImageBackground
+        blurRadius={40}
+
           style={styles.backGroundImage}
           resizeMode="cover"
           source={test()}>

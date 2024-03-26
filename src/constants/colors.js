@@ -9,4 +9,5 @@ export const colors = {
   blue: '#038BF7',
   orange: '#F1B871',
   lightblue: '#92A8D9',
+  silver:'#B2ACAB'
 };
