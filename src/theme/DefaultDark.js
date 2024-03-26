@@ -8,6 +8,8 @@ const DEFAULT_DARK_COLOR_THEME = {
   defaultColor: colors.gray,
   error: colors.red,
   backgroundColor: colors.darkBlue,
+  appColor:colors.silver
+
 };
 
 const FONT_SET = {

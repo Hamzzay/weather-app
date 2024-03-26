@@ -19,7 +19,7 @@ const createStyles = theme => {
       color: theme.color.primaryColor,
     },
     weatherIcon: {
-      marginTop: hp(6),
+      marginTop: hp(5.3),
     },
     desStyle: {
       fontFamily: theme.family.medium,
@@ -79,6 +79,9 @@ const createStyles = theme => {
       padding: wp(3),
       marginLeft: wp(1),
     },
+    mainImage:{
+      flex:1
+    }
   });
   return styles;
 };

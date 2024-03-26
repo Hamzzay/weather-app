@@ -1,4 +1,4 @@
-package com.temperature
+package com.stackup.weather
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

@@ -7,7 +7,7 @@ const Container = props => {
     const themeStyles = StyleSheet.create({
       mainContainer: {
         flex: 1,
-        backgroundColor: theme.color.primaryText,
+        backgroundColor: theme.color.appColor,
       },
     });
     return themeStyles;
