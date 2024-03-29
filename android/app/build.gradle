@@ -80,9 +80,9 @@ android {
         applicationId "com.stackup.weather"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        resConfigs "en", "es", "fr" // Add only the languages that you want to support
+        versionCode 2
+        versionName "1.0.1"
+        resConfigs "en" // Add only the languages that you want to support
 
     }
     signingConfigs {

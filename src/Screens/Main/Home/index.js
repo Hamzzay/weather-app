@@ -1,31 +1,32 @@
-import {
-  View,
-  Platform,
-  TouchableOpacity,
-  ActivityIndicator,
-  ScrollView,
-  Linking,
-  ImageBackground,
-  LogBox,
-} from 'react-native';
-import React, {useEffect, useState, useRef} from 'react';
-import AddIcon from 'react-native-vector-icons/AntDesign';
-import Text from '../../../Components/CustomText';
-import creahandleCloseRowsyles from './style';
-import {useThemeAwareObject} from '../../../theme';
-import {colors} from '../../../constants';
-import Geolocation from 'react-native-geolocation-service';
-import Snackbar from '../../../Components/CustomSnackbar';
-import Container from '../../../Components/Container';
-import Header from '../../../Components/CustomHeader';
-import {removeWeatherData} from '../../../redux/slices/userSlice';
-import {RequestLocationPermission} from '../../../Components/Permissions';
-import {useSelector, useDispatch} from 'react-redux';
-import LottieIcons from '../../../Components/CustomLottie';
-import BackgroundGif from '../../../Components/CustomBackground';
-import {hp, wp} from '../../../util';
+/* eslint-disable react-hooks/exhaustive-deps */
 import LottieView from 'lottie-react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  ActivityIndicator,
+  ImageBackground,
+  Linking,
+  LogBox,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import AddIcon from 'react-native-vector-icons/AntDesign';
+import {useDispatch, useSelector} from 'react-redux';
+import Container from '../../../Components/Container';
+import BackgroundGif from '../../../Components/CustomBackground';
+import Header from '../../../Components/CustomHeader';
+import LottieIcons from '../../../Components/CustomLottie';
+import Snackbar from '../../../Components/CustomSnackbar';
+import Text from '../../../Components/CustomText';
+import {RequestLocationPermission} from '../../../Components/Permissions';
+import {colors} from '../../../constants';
+import {removeWeatherData} from '../../../redux/slices/userSlice';
+import {useThemeAwareObject} from '../../../theme';
+import {hp, wp} from '../../../util';
+import creahandleCloseRowsyles from './style';
 
 export default function Home(props) {
   const styles = useThemeAwareObject(creahandleCloseRowsyles);
@@ -148,10 +149,8 @@ export default function Home(props) {
   };
   const backGif = e => {
     const backgroundImage = BackgroundGif({backgroundImage: e});
-    console.log('backgroundImage', backgroundImage);
     return backgroundImage;
   };
-  console.log('first', backGif);
   const closeRow = (rowMap, rowKey) => {
     if (rowMap[rowKey]) {
       rowMap[rowKey].closeRow();
@@ -172,7 +171,7 @@ export default function Home(props) {
   return (
     <Container>
       <ImageBackground
-       blurRadius={80}
+        blurRadius={80}
         style={styles.mainImage}
         resizeMode="cover"
         source={require('../../../../assets/images/wallpaper.jpg')}>
@@ -185,7 +184,11 @@ export default function Home(props) {
                   handleCloseRows();
                   props.navigation.navigate('AddCity');
                 }}>
-                <AddIcon name="pluscircle" color={colors.black} size={hp(4.2)} />
+                <AddIcon
+                  name="pluscircle"
+                  color={colors.black}
+                  size={hp(4.2)}
+                />
               </TouchableOpacity>
             </View>
           }
@@ -199,7 +202,7 @@ export default function Home(props) {
           </TouchableOpacity>
         ) : (
           <ScrollView nestedScrollEnabled={true}>
-            {currentLocationWeather == '' ? (
+            {!currentLocationWeather == '' ? (
               <ActivityIndicator
                 size="large"
                 color={colors.white}

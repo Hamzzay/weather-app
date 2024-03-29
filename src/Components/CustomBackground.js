@@ -3,7 +3,7 @@ const BackgroundGif = ({backgroundImage}) => {
 
   switch (backgroundImage) {
     case '01d':
-      backgroundGif =require('../../assets/images/sun.jpg');
+      backgroundGif = require('../../assets/images/sun.jpg');
       break;
     case '01n':
       backgroundGif = require('../../assets/images/moon.jpg');
@@ -50,7 +50,6 @@ const BackgroundGif = ({backgroundImage}) => {
     case '13n':
       backgroundGif = require('../../assets/images/snowNight.jpg');
       break;
-
     case '50d':
       backgroundGif = require('../../assets/images/mistDay.jpg');
       break;

@@ -1,26 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import LottieView from 'lottie-react-native';
+import React, {useEffect, useState} from 'react';
 import {
-  View,
-  TouchableOpacity,
-  FlatList,
   ActivityIndicator,
-  ScrollView,
+  FlatList,
   ImageBackground,
   RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useThemeAwareObject} from '../../../theme';
-import createStyles from './style';
-import Text from '../../../Components/CustomText';
+import {LineChart} from 'react-native-chart-kit';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Container from '../../../Components/Container';
-import Header from '../../../Components/CustomHeader';
-import {colors} from '../../../constants';
-import {LineChart} from 'react-native-chart-kit';
-import LottieIcons from '../../../Components/CustomLottie';
-import LottieView from 'lottie-react-native';
-import {wp, hp} from '../../../util';
-import Snackbar from '../../../Components/CustomSnackbar';
 import BackgroundGif from '../../../Components/CustomBackground';
+import Header from '../../../Components/CustomHeader';
+import LottieIcons from '../../../Components/CustomLottie';
+import Snackbar from '../../../Components/CustomSnackbar';
+import Text from '../../../Components/CustomText';
+import {colors} from '../../../constants';
+import {useThemeAwareObject} from '../../../theme';
+import {hp, wp} from '../../../util';
+import createStyles from './style';
+
 export default function Detailweather(props) {
   const {city} = props.route.params;
   const styles = useThemeAwareObject(createStyles);
@@ -44,7 +46,6 @@ export default function Detailweather(props) {
         console.error('Failed to fetch weather data');
       }
     } catch (error) {
-    
       Snackbar(error.message, true);
     }
   };
@@ -154,8 +155,7 @@ export default function Detailweather(props) {
         />
       ) : (
         <ImageBackground
-        blurRadius={40}
-
+          blurRadius={40}
           style={styles.backGroundImage}
           resizeMode="cover"
           source={test()}>
@@ -279,7 +279,9 @@ export default function Detailweather(props) {
                         });
                         return (
                           <View style={styles.containerFlat}>
-                            <Text style={styles.timeStyle}>{formattedTime}</Text>
+                            <Text style={styles.timeStyle}>
+                              {formattedTime}
+                            </Text>
                             <LottieIcons
                               style={styles.weatherIcon}
                               weatherCondition={item?.weather[0]?.icon}
