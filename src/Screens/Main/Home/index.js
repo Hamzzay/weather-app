@@ -32,7 +32,7 @@ export default function Home(props) {
   const styles = useThemeAwareObject(creahandleCloseRowsyles);
   const API_key = '639371a91c642c097c9a558d4c685123';
   const [currentWeatherData, setCurrentWeatherData] = useState([]);
-  const [currentLocationWeather, setCurrentLocationWeather] = useState('');
+  const [currentLocationWeather, setCurrentLocationWeather] = useState();
   const [locationPermission, setLocationPermission] = useState(false);
   const {weatherData} = useSelector(state => state.user);
   const [closeRows, setcloseRows] = useState();
@@ -202,7 +202,7 @@ export default function Home(props) {
           </TouchableOpacity>
         ) : (
           <ScrollView nestedScrollEnabled={true}>
-            {!currentLocationWeather == '' ? (
+            {!currentLocationWeather ? (
               <ActivityIndicator
                 size="large"
                 color={colors.white}

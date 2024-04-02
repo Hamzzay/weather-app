@@ -3,7 +3,7 @@ import {TextInput, View, FlatList, TouchableOpacity} from 'react-native';
 import Text from '../../../Components/CustomText';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../../../Components/CustomHeader';
-import {useDispatch,useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setWeatherdata} from '../../../redux/slices/userSlice';
 import Container from '../../../Components/Container';
 import createStyles from './style';
@@ -19,7 +19,7 @@ const AddCity = props => {
   const [isTyping, setIsTyping] = useState(false);
   const [city, setCity] = useState('');
   const dispatch = useDispatch();
- 
+
   const handleSearch = text => {
     if (text.trim() !== '') {
       const results = data.filter(
@@ -37,8 +37,7 @@ const AddCity = props => {
           dispatch(setWeatherdata(item));
           props.navigation.goBack();
         }}
-        style={styles.containerFlat}
-        >
+        style={styles.containerFlat}>
         <Text style={styles.searchTest}>{item.name}</Text>
       </TouchableOpacity>
     );
@@ -72,11 +71,6 @@ const AddCity = props => {
           }}
         />
       </View>
-      {city === '' && !isTyping &&searchResults.length==0 &&(
-        <View style={styles.containerTypeText}>
-          <Text style={styles.typeText}>No results</Text>
-        </View>
-      )}
       <FlatList
         data={searchResults}
         keyboardShouldPersistTaps={'handled'}
