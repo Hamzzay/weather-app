@@ -50,7 +50,7 @@ export default function Home(props) {
       } else {
         setLocationPermission(true);
         Snackbar('Location permission denied', true);
-        if (permissionStatus === 'blocked' && Platform.OS === 'android') {
+        if (permissionStatus === 'blocked') {
           Linking.openSettings();
         }
       }

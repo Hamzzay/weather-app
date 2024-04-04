@@ -40,7 +40,7 @@ const createStyles = theme => {
       height: hp(20),
       width: wp(30),
       alignSelf: 'flex-end',
-      alignItems:'center',
+      alignItems: 'center',
       borderRadius: theme.borders.radius2,
       marginRight: wp(4),
       justifyContent: 'center',
@@ -55,6 +55,7 @@ const createStyles = theme => {
       width: wp(80),
       marginTop: hp(30),
       alignSelf: 'center',
+      textAlign: 'center',
     },
     activityInd: {
       height: hp(100),
@@ -79,9 +80,9 @@ const createStyles = theme => {
       padding: wp(3),
       marginLeft: wp(1),
     },
-    mainImage:{
-      flex:1
-    }
+    mainImage: {
+      flex: 1,
+    },
   });
   return styles;
 };
