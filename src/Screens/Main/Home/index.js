@@ -6,7 +6,6 @@ import {
   ImageBackground,
   Linking,
   LogBox,
-  Platform,
   ScrollView,
   TouchableOpacity,
   View,
@@ -31,6 +30,7 @@ import creahandleCloseRowsyles from './style';
 export default function Home(props) {
   const styles = useThemeAwareObject(creahandleCloseRowsyles);
   const API_key = '639371a91c642c097c9a558d4c685123';
+  const [loading, setLoading] = useState(true);
   const [currentWeatherData, setCurrentWeatherData] = useState([]);
   const [currentLocationWeather, setCurrentLocationWeather] = useState();
   const [locationPermission, setLocationPermission] = useState(false);
@@ -50,9 +50,6 @@ export default function Home(props) {
       } else {
         setLocationPermission(true);
         Snackbar('Location permission denied', true);
-        if (permissionStatus === 'blocked') {
-          Linking.openSettings();
-        }
       }
     } catch (error) {
       Snackbar(error, true);
@@ -132,13 +129,15 @@ export default function Home(props) {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`,
       );
-      if (res.status == 200) {
+      setLoading(false);
+      if (res.status === 200) {
         const data = await res.json();
         setCurrentLocationWeather(data);
       } else {
         Snackbar('Failed to fetch weather data', true);
       }
     } catch (err) {
+      setLoading(false);
       Snackbar(' Network request failed', true);
     }
   };
@@ -194,15 +193,13 @@ export default function Home(props) {
           }
         />
         {locationPermission ? (
-          <TouchableOpacity onPress={() => askPermission()}>
-            <Text style={styles.permissionDeniedText}>
-              Location permission denied. Please enable location services in
-              your settings.
-            </Text>
-          </TouchableOpacity>
+          <Text style={styles.permissionDeniedText}>
+            Location permission denied. Please enable location services in your
+            settings.
+          </Text>
         ) : (
           <ScrollView nestedScrollEnabled={true}>
-            {!currentLocationWeather ? (
+            {loading ? (
               <ActivityIndicator
                 size="large"
                 color={colors.white}
