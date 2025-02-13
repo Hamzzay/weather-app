@@ -55,6 +55,34 @@ Now that you have successfully run the app, let's modify it.
 
    For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
+## How the App Works
+
+### Overview
+
+This React Native application is designed to provide weather forecasts for various cities. It leverages the OpenWeatherMap API to deliver current and weekly weather updates.
+
+### Main Components
+
+- **Home Screen**: Displays the current weather for the user's location and a list of cities added by the user. Users can tap on a city to view detailed weather information.
+  
+- **Detail Weather Screen**: Provides detailed weather data for a selected city, including current temperature, weather conditions, and a 5-day forecast.
+
+- **Add City Screen**: Allows users to search for cities and add them to their list for quick access to weather updates.
+
+### Key Features
+
+- **Location-Based Weather**: The app uses the device's geolocation to fetch and display weather data for the user's current location.
+- **City Management**: Users can add or remove cities from their list to view weather updates for those locations.
+- **Interactive UI**: The app includes Lottie animations and a user-friendly interface to enhance the user experience.
+
+### API Integration
+
+The app integrates with the OpenWeatherMap API to fetch weather data. Ensure you have a valid API key configured in the codebase.
+
+### State Management
+
+The app uses Redux for state management, which helps in efficiently handling weather data and user interactions.
+
 ## Congratulations! :tada:
 
 You've successfully run and modified your React Native App. :partying_face:
